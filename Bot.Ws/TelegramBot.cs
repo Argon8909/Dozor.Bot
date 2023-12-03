@@ -1,5 +1,8 @@
+using Bot.Ws.Models;
+using Bot.Ws.Models;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+
 
 namespace Bot.Ws;
 
@@ -7,7 +10,8 @@ public class TelegramBot : BackgroundService
 {
     private readonly string _botToken = "6312399390:AAFp9ahKllgC93T16KD2sA2q39CAIMwyJ3w";
     private readonly HttpClient _httpClient;
-
+    public Queue<ResultJson> _inputMessagesQueue = new Queue<ResultJson>();
+    
     public TelegramBot(
         // IOptions<TelegramBotOptions> options
     )
@@ -26,10 +30,12 @@ public class TelegramBot : BackgroundService
             Console.WriteLine(updates.Ok);
 
 
-            foreach (var update in updates.Result)
+            foreach (var update in updates.Results)
             {
                 // Обработка входящего сообщения
-                // ProcessUpdate(update);
+                ProcessUpdate(update);
+                _inputMessagesQueue.Enqueue(update);
+                
                 Console.WriteLine(update.Message.Text);
                 // Увеличиваем offset, чтобы не получать обновления повторно
                 offset = update.UpdateId + 1;
@@ -38,8 +44,10 @@ public class TelegramBot : BackgroundService
             await Task.Delay(1000, stoppingToken);
         }
     }
-/*
-    private void ProcessUpdate(Update update)
+
+/// ///////////////////////////////////////
+
+    private void ProcessUpdate(ResultJson update)
     {
         if (update.Message != null)
         {
@@ -47,17 +55,18 @@ public class TelegramBot : BackgroundService
             Console.WriteLine($"Received message from {message.Chat.Id}: {message.Text}");
 
             // Здесь обрабатывай сообщение, например, отправляй ответ
-            SendMessage(message.Chat.Id, "Привет! Я бот на .NET без библиотек.");
+             SendMessageAsync(message.Chat.Id, "Привет! Я бот на .NET без библиотек.").Wait();
         }
     }
-*/
-    private async Task<MessagesRoot> GetUpdatesAsync(int offset, CancellationToken cancellationToken) // List<Update>
+/// //////////////////////////////////
+
+    private async Task<MessagesJson> GetUpdatesAsync(int offset, CancellationToken cancellationToken) // List<Update>
     {
         try
         {
             var apiUrl = $"https://api.telegram.org/bot{_botToken}/getUpdates?offset={offset}";
             var response = await _httpClient.GetStringAsync(apiUrl, cancellationToken);
-            var updates = JsonConvert.DeserializeObject<MessagesRoot>(response);
+            var updates = JsonConvert.DeserializeObject<MessagesJson>(response);
 
             return updates;
         }
@@ -68,9 +77,15 @@ public class TelegramBot : BackgroundService
         }
     }
 
-    private void SendMessage(int chatId, string text)
+    public async Task SendMessageAsync(long chatId, string text)
     {
         var apiUrl = $"https://api.telegram.org/bot{_botToken}/sendMessage?chat_id={chatId}&text={text}";
-        _httpClient.GetStringAsync(apiUrl);
+        var res = await _httpClient.GetStringAsync(apiUrl);
+        Console.WriteLine("res: " + res);
+    }
+
+    public Queue<ResultJson> GetMessages(long chatId)
+    {
+        return new Queue<ResultJson>(_inputMessagesQueue.Where(msg => msg.Message.Chat.Id == chatId));
     }
 }

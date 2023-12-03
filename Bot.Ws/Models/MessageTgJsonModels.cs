@@ -1,24 +1,24 @@
 using Newtonsoft.Json;
 
-namespace Bot.Ws;
+namespace Bot.Ws.Models;
 
-// MessagesRoot myDeserializedClass = JsonConvert.DeserializeObject<MessagesRoot>(myJsonResponse);
-public class Chat
+// MessagesJson myDeserializedClass = JsonConvert.DeserializeObject<MessagesJson>(myJsonResponse);
+public class ChatJson
 {
     [JsonProperty("id")]
     public long Id { get; set; }
 
     [JsonProperty("first_name")]
-    public string FirstName { get; set; }
+    public string? FirstName { get; set; }
 
     [JsonProperty("username")]
-    public string Username { get; set; }
+    public string? Username { get; set; }
 
     [JsonProperty("type")]
-    public string Type { get; set; }
+    public string? Type { get; set; }
 }
 
-public class Entity
+public class EntityJson
 {
     [JsonProperty("offset")]
     public int Offset { get; set; }
@@ -27,10 +27,10 @@ public class Entity
     public int Length { get; set; }
 
     [JsonProperty("type")]
-    public string Type { get; set; }
+    public string? Type { get; set; }
 }
 
-public class From
+public class FromJson
 {
     [JsonProperty("id")]
     public long Id { get; set; }
@@ -39,51 +39,51 @@ public class From
     public bool IsBot { get; set; }
 
     [JsonProperty("first_name")]
-    public string FirstName { get; set; }
+    public string? FirstName { get; set; }
 
     [JsonProperty("username")]
-    public string Username { get; set; }
+    public string? Username { get; set; }
 
     [JsonProperty("language_code")]
-    public string LanguageCode { get; set; }
+    public string? LanguageCode { get; set; }
 }
 
-public class Message
+public class MessageJson
 {
     [JsonProperty("message_id")]
     public int MessageId { get; set; }
 
     [JsonProperty("from")]
-    public From From { get; set; }
+    public FromJson? From { get; set; }
 
     [JsonProperty("chat")]
-    public Chat Chat { get; set; }
+    public ChatJson? Chat { get; set; }
 
     [JsonProperty("date")]
     public int Date { get; set; }
 
     [JsonProperty("text")]
-    public string Text { get; set; }
+    public string? Text { get; set; }
 
     [JsonProperty("entities")]
-    public List<Entity> Entities { get; set; }
+    public List<EntityJson>? Entities { get; set; }
 }
 
-public class Result
+public class ResultJson
 {
     [JsonProperty("update_id")]
     public int UpdateId { get; set; }
 
     [JsonProperty("message")]
-    public Message Message { get; set; }
+    public MessageJson? Message { get; set; }
 }
 
-public class MessagesRoot
+public class MessagesJson
 {
     [JsonProperty("ok")]
     public bool Ok { get; set; }
 
     [JsonProperty("result")]
-    public List<Result> Result { get; set; }
+    public List<ResultJson>? Results { get; set; }
 }
 
