@@ -1,4 +1,5 @@
 using System.Collections.Concurrent;
+using System.Diagnostics;
 using Bot.Ws.Models;
 using Bot.Ws.Models;
 using Microsoft.Extensions.Options;
@@ -12,8 +13,9 @@ public class TelegramBot : BackgroundService
     private readonly string _botToken = "6312399390:AAFp9ahKllgC93T16KD2sA2q39CAIMwyJ3w";
     private readonly HttpClient _httpClient = new();
     // private ConcurrentQueue<ResultJson> _inputMessagesQueue = new();
-    public ConcurrentQueue<ResultJson>? InputMessagesQueue { get; private set; }
+    public ConcurrentQueue<ResultJson> InputMessagesQueue { get; } = new ConcurrentQueue<ResultJson>();
 
+    
 /*
     public TelegramBot(
         // IOptions<TelegramBotOptions> options
@@ -27,6 +29,7 @@ public class TelegramBot : BackgroundService
     {
         while (!cancellationToken.IsCancellationRequested)
         {
+            Console.WriteLine("qqqqqqqqqqqqqqqqqqqqq");
             await InputMessagesHandler(cancellationToken);
             await Task.Delay(1000, cancellationToken);
         }
@@ -40,11 +43,13 @@ public class TelegramBot : BackgroundService
         while (!cancellationToken.IsCancellationRequested && updates.Results.Count > 0)
         {
             updates = await GetUpdatesAsync(offset, cancellationToken);
-            foreach (var update in updates.Results)
-            {
-                InputMessagesQueue.Enqueue(update);
-                offset = update.UpdateId + 1;
-            }
+
+            if (updates != null)
+                foreach (var update in updates.Results)
+                {
+                    InputMessagesQueue.Enqueue(update);
+                    offset = update.UpdateId + 1;
+                }
 
             await Task.Delay(100, cancellationToken);
         }
@@ -85,9 +90,10 @@ public class TelegramBot : BackgroundService
         }
     }
 
-    public Queue<ResultJson> GetMessages(long chatId)
+    public ConcurrentQueue<ResultJson> GetMessages()
     {
-        return new Queue<ResultJson>(InputMessagesQueue.Where(msg => msg.Message.Chat.Id == chatId));
+        return InputMessagesQueue;
+        // return new Queue<ResultJson>(InputMessagesQueue.Where(msg => msg.Message.Chat.Id == chatId));
     }
 }
 
