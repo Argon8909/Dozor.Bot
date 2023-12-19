@@ -6,10 +6,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bot.App", "Bot.App\Bot.App.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bot.Dal", "Bot.Dal\Bot.Dal.csproj", "{8889DC74-CF0B-45C1-B752-3FB0EF74F775}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkerService1", "WorkerService1\WorkerService1.csproj", "{1BE94DE8-8848-43BE-BFC7-1319E970F0F2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bot.Bll", "Bot.Bll\Bot.Bll.csproj", "{5839548D-7E7B-415E-9D42-3035E51D42A4}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,13 +24,5 @@ Global
 		{8889DC74-CF0B-45C1-B752-3FB0EF74F775}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8889DC74-CF0B-45C1-B752-3FB0EF74F775}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8889DC74-CF0B-45C1-B752-3FB0EF74F775}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1BE94DE8-8848-43BE-BFC7-1319E970F0F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1BE94DE8-8848-43BE-BFC7-1319E970F0F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1BE94DE8-8848-43BE-BFC7-1319E970F0F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1BE94DE8-8848-43BE-BFC7-1319E970F0F2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5839548D-7E7B-415E-9D42-3035E51D42A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5839548D-7E7B-415E-9D42-3035E51D42A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5839548D-7E7B-415E-9D42-3035E51D42A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5839548D-7E7B-415E-9D42-3035E51D42A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

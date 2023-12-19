@@ -1,12 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bL+iAz/awX1HE8LEA4pv9s4v98BK38BzHk3sdSzwCkfPa1GccRxWO8h9ZUsBZlcJHW0PvOQWtsgNjYsmbe8CNA==",
+  "dgSpecHash": "8HvCNUD+HLtgok5STpuzNxDMjwX0wCol69x6Tqz5mpqqkpjnCYCdZgrNWnw0lSzFXvJDEX4qmDNVAM3DDczC/Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\Аркадий\\RiderProjects\\Dozor.Bot\\Bot.Dal\\Bot.Dal.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Аркадий\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.21\\microsoft.netcore.app.ref.6.0.21.nupkg.sha512",
-    "C:\\Users\\Аркадий\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.21\\microsoft.windowsdesktop.app.ref.6.0.21.nupkg.sha512",
-    "C:\\Users\\Аркадий\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.21\\microsoft.aspnetcore.app.ref.6.0.21.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "k5OfZfoPMaZQjUglWDRmSdo4OVmsKEuVPvHA1PTf2Ey8oKagmftdUwAx3e5OfuJbtOaq9iYszt+/yZpXHniinA==",
+  "dgSpecHash": "o+pT4e8bTQ2GNCXftxY6Q/yKNz6uPpsKwY8sCfD6PsH/PxnQiYF3Vsj9AM6DiLOzNKuwgmLi3safk6ONY1YY3A==",
   "success": true,
   "projectFilePath": "C:\\Users\\Аркадий\\RiderProjects\\Dozor.Bot\\Bot.Ws\\Bot.Ws.csproj",
   "expectedPackageFiles": [
@@ -33,7 +33,11 @@
     "C:\\Users\\Аркадий\\.nuget\\packages\\system.diagnostics.diagnosticsource\\7.0.1\\system.diagnostics.diagnosticsource.7.0.1.nupkg.sha512",
     "C:\\Users\\Аркадий\\.nuget\\packages\\system.diagnostics.eventlog\\7.0.0\\system.diagnostics.eventlog.7.0.0.nupkg.sha512",
     "C:\\Users\\Аркадий\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
-    "C:\\Users\\Аркадий\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512"
+    "C:\\Users\\Аркадий\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
+    "C:\\Users\\Аркадий\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.14\\microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\Аркадий\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.14\\microsoft.windowsdesktop.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\Аркадий\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.14\\microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\Аркадий\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.14\\microsoft.netcore.app.host.win-x64.7.0.14.nupkg.sha512"
   ],
   "logs": []
 }

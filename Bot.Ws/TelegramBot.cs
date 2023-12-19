@@ -1,5 +1,6 @@
 using System.Collections.Concurrent;
 using System.Diagnostics;
+using Bot.WebApp;
 using Bot.Ws.Models;
 using Bot.Ws.Models;
 using Microsoft.Extensions.Options;
@@ -10,21 +11,20 @@ namespace Bot.Ws;
 
 public class TelegramBot : BackgroundService
 {
-    private readonly string _botToken = "6312399390:AAFp9ahKllgC93T16KD2sA2q39CAIMwyJ3w";
+    private readonly string _botToken; //= "6312399390:AAFp9ahKllgC93T16KD2sA2q39CAIMwyJ3w";
     private readonly HttpClient _httpClient = new();
     // private ConcurrentQueue<ResultJson> _inputMessagesQueue = new();
     public ConcurrentQueue<ResultJson> InputMessagesQueue { get; } = new ConcurrentQueue<ResultJson>();
 
     
-/*
-    public TelegramBot(
-        // IOptions<TelegramBotOptions> options
-    )
+
+    public TelegramBot(IOptions<BotSettings> options)
     {
-        //_botToken = options.Value.BotToken;
-        // _httpClient = new HttpClient();
+        _botToken = options.Value.Token;
+         _httpClient = new HttpClient();
+         Console.WriteLine($">{options.Value.Token.ToString()}<");
     }
-*/
+
     protected override async Task ExecuteAsync(CancellationToken cancellationToken)
     {
         while (!cancellationToken.IsCancellationRequested)
@@ -61,6 +61,7 @@ public class TelegramBot : BackgroundService
         if (cancellationToken.IsCancellationRequested)
         {
             return null;
+            // return await Task.FromResult<MessagesJson?>(null);
         }
 
         try
