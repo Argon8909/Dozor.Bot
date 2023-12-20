@@ -8,17 +8,17 @@ namespace Bot.WebApp.Controllers;
 [Route("api/[controller]")]
 public class BotController : Controller
 {
-    private readonly TelegramBot _telegramBot;
+    private readonly IBotService _botService;
     
-    public BotController(TelegramBot telegramBot)
+    public BotController(IBotService botService)
     {
-        _telegramBot = telegramBot;
+        _botService = botService;
     }
     
     [HttpGet]
     public IActionResult Get()
     {
-        var msg =_telegramBot.GetMessages();
+        var msg =_botService.GetMessages();
         var sb = new StringBuilder();
         
         foreach (var resultJson in msg)

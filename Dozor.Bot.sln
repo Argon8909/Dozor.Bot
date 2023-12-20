@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bot.App", "Bot.App\Bot.App.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bot.Dal", "Bot.Dal\Bot.Dal.csproj", "{8889DC74-CF0B-45C1-B752-3FB0EF74F775}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bot.BLL", "Bot.BLL\Bot.BLL.csproj", "{1F13539C-D1DD-4EB7-B465-D406A1A42C2F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{8889DC74-CF0B-45C1-B752-3FB0EF74F775}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8889DC74-CF0B-45C1-B752-3FB0EF74F775}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8889DC74-CF0B-45C1-B752-3FB0EF74F775}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F13539C-D1DD-4EB7-B465-D406A1A42C2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F13539C-D1DD-4EB7-B465-D406A1A42C2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F13539C-D1DD-4EB7-B465-D406A1A42C2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F13539C-D1DD-4EB7-B465-D406A1A42C2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

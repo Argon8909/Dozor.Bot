@@ -9,8 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 // builder.Services.Configure<BotSettings>(builder.Configuration.GetSection("BotSettings"));
 // builder.Services.AddHostedService<TelegramBot>();
 
-builder.Services.AddSingleton<TelegramBot>(); // Добавьте эту строку
 builder.Services.Configure<BotSettings>(builder.Configuration.GetSection("BotSettings"));
+builder.Services.AddSingleton<TelegramBot>(); // Добавьте эту строку
+builder.Services.AddSingleton<IBotService, BotService>();
 builder.Services.AddHostedService<TelegramBot>();
 
 
