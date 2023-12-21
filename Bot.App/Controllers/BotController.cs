@@ -9,23 +9,32 @@ namespace Bot.WebApp.Controllers;
 public class BotController : Controller
 {
     private readonly IBotService _botService;
-    
+
     public BotController(IBotService botService)
     {
         _botService = botService;
     }
-    
+
+    [HttpPost]
+    public IActionResult Post(string chatId, string message)
+    {
+        _botService.SendMessageAsync(chatId, message);
+        
+        return Ok();
+    }
+
     [HttpGet]
     public IActionResult Get()
     {
-        var msg =_botService.GetMessages();
+        var msg = _botService.GetMessages();
         var sb = new StringBuilder();
-        
+
         foreach (var resultJson in msg)
         {
-            sb.Append(resultJson.Message.Text + "\t" + resultJson.Message.From.Username + "\n");
+            sb.Append(resultJson.Message.Chat.Id + "\t" + resultJson.Message.From.Username + "\n" +
+                      resultJson.Message.Text + "\n");
         }
-        
+
         return Ok(sb.ToString());
     }
 }

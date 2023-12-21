@@ -7,6 +7,6 @@ public interface IBotService
 {
     Task InputMessagesHandler(CancellationToken cancellationToken);
     Task<MessagesJson?> GetUpdatesAsync(int offset, CancellationToken cancellationToken);
-    void SendMessageAsync(long chatId, string text);
+    void SendMessageAsync(string chatId, string text);
     ConcurrentQueue<ResultJson> GetMessages();
 }

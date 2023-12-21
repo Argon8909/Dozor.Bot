@@ -20,7 +20,6 @@ public class BotService : IBotService
     {
         _botToken = options.Value.Token;
         _httpClient = new HttpClient();
-        Console.WriteLine($">{options.Value.Token.ToString()}<");
     }
 
     public async Task InputMessagesHandler(CancellationToken cancellationToken)
@@ -72,12 +71,12 @@ public class BotService : IBotService
         try
         {
             var apiUrl = $"https://api.telegram.org/bot{_botToken}/getUpdates?offset={offset}";
-            Console.WriteLine("apiUrl ===> " + apiUrl);
+            // Console.WriteLine("apiUrl ===> " + apiUrl);
 
             var response = await _httpClient.GetAsync(apiUrl, cancellationToken);
             var content = await response.Content.ReadAsStringAsync();
 
-            Console.WriteLine("response ===> " + content);
+            // Console.WriteLine("response ===> " + content);
 
             var updates = JsonConvert.DeserializeObject<MessagesJson>(content);
             return updates;
@@ -95,13 +94,14 @@ public class BotService : IBotService
     }
 
 
-    public void SendMessageAsync(long chatId, string text)
+    public void SendMessageAsync(string chatId, string text)
     {
         using (var httpClient = new HttpClient())
         {
             var apiUrl = $"https://api.telegram.org/bot{_botToken}/sendMessage?chat_id={chatId}&text={text}";
+            Console.WriteLine("apiUrl ===> " + apiUrl);
             var res = httpClient.GetStringAsync(apiUrl);
-            Console.WriteLine("res: " + res);
+            Console.WriteLine("res: " + res.Result.ToString());
         }
     }
 
