@@ -10,12 +10,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("Bot.App")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("Bot.BLL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1d57b2e0664694044ed997a3f6680b8f7b395c15")]
-[assembly: System.Reflection.AssemblyProductAttribute("Bot.App")]
-[assembly: System.Reflection.AssemblyTitleAttribute("Bot.App")]
+[assembly: System.Reflection.AssemblyProductAttribute("Bot.BLL")]
+[assembly: System.Reflection.AssemblyTitleAttribute("Bot.BLL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Создано классом WriteCodeFragment MSBuild.

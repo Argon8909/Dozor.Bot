@@ -4,15 +4,14 @@ using Bot.Ws;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-//builder.Services.AddHostedService<Worker>();
-
-// builder.Services.Configure<BotSettings>(builder.Configuration.GetSection("BotSettings"));
-// builder.Services.AddHostedService<TelegramBot>();
 
 builder.Services.Configure<BotSettings>(builder.Configuration.GetSection("BotSettings"));
-builder.Services.AddSingleton<TelegramBot>(); // Добавьте эту строку
+builder.Services.AddSingleton<TelegramBot>(); 
 builder.Services.AddSingleton<IBotService, BotService>();
 builder.Services.AddHostedService<TelegramBot>();
+
+// builder.Services.AddSingleton<System.Threading.Timer>();
+// builder.Services.AddSingleton<System.Threading.Timer>(_ => new System.Threading.Timer(_ => { }, null, Timeout.Infinite, Timeout.Infinite));
 
 
 builder.Services.AddControllers();

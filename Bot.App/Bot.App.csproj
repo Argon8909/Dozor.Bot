@@ -13,8 +13,8 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Bot.BLL\Bot.BLL.csproj" />
       <ProjectReference Include="..\Bot.Dal\Bot.Dal.csproj" />
-      <ProjectReference Include="..\Bot.Ws\Bot.Ws.csproj" />
     </ItemGroup>
 
 </Project>
