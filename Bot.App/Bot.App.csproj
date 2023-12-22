@@ -14,7 +14,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Bot.BLL\Bot.BLL.csproj" />
-      <ProjectReference Include="..\Bot.Dal\Bot.Dal.csproj" />
     </ItemGroup>
 
 </Project>

@@ -15,7 +15,6 @@ public class BotService : IBotService
     int offset = 0;
     public ConcurrentQueue<ResultJson> InputMessagesQueue { get; } = new ConcurrentQueue<ResultJson>();
 
-
     public BotService(IOptions<BotSettings> options)
     {
         _botToken = options.Value.Token;
@@ -25,7 +24,6 @@ public class BotService : IBotService
     public async Task InputMessagesHandler(CancellationToken cancellationToken)
     {
         MessagesJson updates;
-
         // Используем SemaphoreSlim для синхронизации
         await _updateSemaphore.WaitAsync(cancellationToken);
         try
@@ -36,6 +34,7 @@ public class BotService : IBotService
             if (tmpOffset > offset)
             {
                 offset = tmpOffset;
+                OnInputMessages(); //this, EventArgs.Empty
             }
         }
         finally
@@ -61,7 +60,7 @@ public class BotService : IBotService
     }
 
 
-    public async Task<MessagesJson?> GetUpdatesAsync(int offset, CancellationToken cancellationToken)
+    private async Task<MessagesJson?> GetUpdatesAsync(int offset, CancellationToken cancellationToken)
     {
         if (cancellationToken.IsCancellationRequested)
         {
@@ -72,12 +71,9 @@ public class BotService : IBotService
         {
             var apiUrl = $"https://api.telegram.org/bot{_botToken}/getUpdates?offset={offset}";
             // Console.WriteLine("apiUrl ===> " + apiUrl);
-
             var response = await _httpClient.GetAsync(apiUrl, cancellationToken);
             var content = await response.Content.ReadAsStringAsync();
-
             // Console.WriteLine("response ===> " + content);
-
             var updates = JsonConvert.DeserializeObject<MessagesJson>(content);
             return updates;
         }
@@ -99,7 +95,7 @@ public class BotService : IBotService
         using (var httpClient = new HttpClient())
         {
             var apiUrl = $"https://api.telegram.org/bot{_botToken}/sendMessage?chat_id={chatId}&text={text}";
-            Console.WriteLine("apiUrl ===> " + apiUrl);
+            // Console.WriteLine("apiUrl ===> " + apiUrl);
             var res = httpClient.GetStringAsync(apiUrl);
             Console.WriteLine("res: " + res.Result.ToString());
         }
@@ -110,4 +106,8 @@ public class BotService : IBotService
         return InputMessagesQueue;
         // return new Queue<ResultJson>(InputMessagesQueue.Where(msg => msg.Message.Chat.Id == chatId));
     }
+
+    public delegate void InputMessagesDelegate(); // object sender, EventArgs e
+
+    public event InputMessagesDelegate OnInputMessages;
 }

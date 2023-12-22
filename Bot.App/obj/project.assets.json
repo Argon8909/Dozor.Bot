@@ -751,16 +751,6 @@
         "runtime": {
           "bin/placeholder/Bot.BLL.dll": {}
         }
-      },
-      "Bot.Dal/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/Bot.Dal.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Bot.Dal.dll": {}
-        }
       }
     }
   },
@@ -2047,17 +2037,11 @@
       "type": "project",
       "path": "../Bot.BLL/Bot.BLL.csproj",
       "msbuildProject": "../Bot.BLL/Bot.BLL.csproj"
-    },
-    "Bot.Dal/1.0.0": {
-      "type": "project",
-      "path": "../Bot.Dal/Bot.Dal.csproj",
-      "msbuildProject": "../Bot.Dal/Bot.Dal.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
       "Bot.BLL >= 1.0.0",
-      "Bot.Dal >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 7.0.10",
       "Swashbuckle.AspNetCore >= 6.5.0"
     ]
@@ -2089,9 +2073,6 @@
           "projectReferences": {
             "C:\\Users\\Аркадий\\RiderProjects\\Dozor.Bot\\Bot.BLL\\Bot.BLL.csproj": {
               "projectPath": "C:\\Users\\Аркадий\\RiderProjects\\Dozor.Bot\\Bot.BLL\\Bot.BLL.csproj"
-            },
-            "C:\\Users\\Аркадий\\RiderProjects\\Dozor.Bot\\Bot.Dal\\Bot.Dal.csproj": {
-              "projectPath": "C:\\Users\\Аркадий\\RiderProjects\\Dozor.Bot\\Bot.Dal\\Bot.Dal.csproj"
             }
           }
         }

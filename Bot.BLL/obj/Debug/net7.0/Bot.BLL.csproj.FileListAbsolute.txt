@@ -10,3 +10,4 @@ C:\Users\Аркадий\RiderProjects\Dozor.Bot\Bot.BLL\obj\Debug\net7.0\Bot.BLL
 C:\Users\Аркадий\RiderProjects\Dozor.Bot\Bot.BLL\obj\Debug\net7.0\refint\Bot.BLL.dll
 C:\Users\Аркадий\RiderProjects\Dozor.Bot\Bot.BLL\obj\Debug\net7.0\Bot.BLL.pdb
 C:\Users\Аркадий\RiderProjects\Dozor.Bot\Bot.BLL\obj\Debug\net7.0\ref\Bot.BLL.dll
+C:\Users\Аркадий\RiderProjects\Dozor.Bot\Bot.BLL\obj\Debug\net7.0\Bot.BLL.sourcelink.json

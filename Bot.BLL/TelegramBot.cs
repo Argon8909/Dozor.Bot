@@ -47,7 +47,7 @@ public class TelegramBot : IHostedService, IDisposable
     private void OnTimerElapsed(object sender, ElapsedEventArgs e)
     {
         // Логика для таймера
-        Console.WriteLine("Сработал таймер ");
+        // Console.WriteLine("Сработал таймер ");
         _botService.InputMessagesHandler(_cancellationTokenSource.Token);
     }
 
@@ -92,7 +92,7 @@ public class TelegramBot : IHostedService, IDisposable
     {
         // Логика для таймера
         Console.WriteLine("Сработал таймер ");
-        _botService.InputMessagesHandler(_cancellationTokenSource.Token);
+        _botService.OnInputMessagesHandler(_cancellationTokenSource.Token);
     }
 
     public void Dispose()
