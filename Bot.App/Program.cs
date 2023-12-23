@@ -1,4 +1,6 @@
 using Bot.BLL;
+using Bot.BLL.GameLogic;
+using Bot.BLL.TelegramLogic;
 using Bot.WebApp;
 using Bot.Ws;
 
@@ -7,10 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.Configure<BotSettings>(builder.Configuration.GetSection("BotSettings"));
-builder.Services.AddSingleton<TelegramBot>(); 
+builder.Services.AddSingleton<TgUpdateLoop>(); 
 builder.Services.AddSingleton<IBotService, BotService>();
 // builder.Services.AddSingleton<IEngine, Engine>();
-builder.Services.AddHostedService<TelegramBot>();
+builder.Services.AddHostedService<TgUpdateLoop>();
 builder.Services.AddHostedService<Engine>();
 // builder.Services.AddSingleton<System.Threading.Timer>();
 // builder.Services.AddSingleton<System.Threading.Timer>(_ => new System.Threading.Timer(_ => { }, null, Timeout.Infinite, Timeout.Infinite));

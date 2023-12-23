@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Bot.BLL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6b9c0d19cfd80976a88a6f12f80524e621e24006")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+48aa8d20ebfe8c3ffa2f3f6df000642b858990ec")]
 [assembly: System.Reflection.AssemblyProductAttribute("Bot.BLL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Bot.BLL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

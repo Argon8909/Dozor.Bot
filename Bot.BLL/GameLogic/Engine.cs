@@ -1,12 +1,15 @@
+using System.Collections.Concurrent;
 using System.Text;
+using Bot.BLL.TelegramLogic;
 using Bot.Ws;
 using Bot.Ws.Models;
 using Microsoft.Extensions.Hosting;
 
-namespace Bot.BLL;
+namespace Bot.BLL.GameLogic;
 
-public class Engine : IHostedService  //, IDisposable
+public class Engine : IHostedService //, IDisposable
 {
+    private ConcurrentQueue<ResultJson> InputMessagesQueue { get; } = new();
     private CancellationTokenSource _cancellationTokenSource;
     private readonly IBotService _botService;
     private const string FilePath = @"A:\data\dozor_backup.json"; // A:\data
@@ -22,24 +25,43 @@ public class Engine : IHostedService  //, IDisposable
         while (!cancellationToken.IsCancellationRequested)
         {
             
-            
-            
+            // логика проведения игры тут
+            //
+            //
             await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
         }
     }
-
-   
-    // Логика метода написана для эксперимента.
-    private void OnInputMessagesHandler()
+    
+    private void OnInputMessagesHandler(object? sender, InputMessagesEventArgs inputMessagesEvent)
     {
         Console.WriteLine("Событие обработано!");
+        var messages = inputMessagesEvent.InputMessagesData;
+        foreach (var message in messages)
+        {
+            InputMessagesQueue.Enqueue(message);
+        }
+        MessageHandler();
+    }
+
+// Логика метода написана для эксперимента.
+    private void TestSendMessages()
+    {
+        var messages = BackupManager.ReadObjectsFromFile<ResultJson>(FilePath);
+        foreach (var message in messages)
+        {
+            _botService.SendMessageAsync(message.Message.Chat.Id.ToString(), message.Message.Text);
+        }
+    }
+
+    public Task MessageHandler()
+    {
         var sb = new StringBuilder();
         while (true)
         {
             // Извлечение элемента из очереди
-            if (_botService.InputMessagesQueue.TryDequeue(out ResultJson result))
+            if (InputMessagesQueue.TryDequeue(out ResultJson result))
             {
-                BackupManager.WriteObjectToFile<ResultJson>(result, FilePath );
+                BackupManager.WriteObjectToFile(result, FilePath);
                 sb.Append(result.Message.Chat.Id + "\t" + result.Message.From.Username + "\n" +
                           result.Message.Text + "\n");
             }
@@ -53,16 +75,7 @@ public class Engine : IHostedService  //, IDisposable
 
         TestSendMessages();
         Console.WriteLine(sb.ToString());
-    }
-
-    private void TestSendMessages()
-    {
-      var messages =  BackupManager.ReadObjectsFromFile<ResultJson>(FilePath);
-      foreach (var message in messages)
-      {
-          _botService.SendMessageAsync(message.Message.Chat.Id.ToString(), message.Message.Text);
-      }
-      
+        return Task.CompletedTask;
     }
     
     public Task StartAsync(CancellationToken cancellationToken)
@@ -70,14 +83,13 @@ public class Engine : IHostedService  //, IDisposable
         _cancellationTokenSource = new CancellationTokenSource();
 
         Task.Run(async () => await GameControl(_cancellationTokenSource.Token), _cancellationTokenSource.Token);
-    
+
         return Task.CompletedTask;
     }
-    
+
     public Task StopAsync(CancellationToken cancellationToken)
     {
         _cancellationTokenSource?.Cancel();
         return Task.CompletedTask;
     }
-    
 }
