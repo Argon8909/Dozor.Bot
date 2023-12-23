@@ -2,15 +2,15 @@ using Newtonsoft.Json;
 
 namespace Bot.BLL;
 
-public class BackupManager
+public static class BackupManager
 {
-    public void WriteObjectToFile<T>(T obj, string filePath)
+    public static void WriteObjectToFile<T>(T obj, string filePath, bool append = true)
     {
         try
         {
-            using (StreamWriter streamWriter = new StreamWriter(filePath, true))
+            using (var streamWriter = new StreamWriter(filePath, append))
             {
-                string json = JsonConvert.SerializeObject(obj);
+                var json = JsonConvert.SerializeObject(obj);
                 streamWriter.WriteLine(json);
             }
         }
@@ -22,9 +22,9 @@ public class BackupManager
        
     }
 
-    public List<T> ReadObjectsFromFile<T>(string filePath)
+    public static List<T> ReadObjectsFromFile<T>(string filePath)
     {
-        List<T> objects = new List<T>();
+        var objects = new List<T>();
 
         // Проверяем, существует ли файл
         if (File.Exists(filePath))
@@ -32,9 +32,9 @@ public class BackupManager
             // Читаем все строки из файла
             string[] lines = File.ReadAllLines(filePath);
             // Преобразуем строки в объекты и добавляем в список
-            foreach (string line in lines)
+            foreach (var line in lines)
             {
-                T obj = JsonConvert.DeserializeObject<T>(line);
+                var obj = JsonConvert.DeserializeObject<T>(line);
                 objects.Add(obj);
             }
         }
