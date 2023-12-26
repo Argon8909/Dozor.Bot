@@ -1,5 +1,5 @@
 using System.Timers;
-using Bot.Ws;
+using Bot.BLL.Interfaces;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Timer = System.Timers.Timer;

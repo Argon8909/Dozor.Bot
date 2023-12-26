@@ -5,8 +5,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Bot.Ws;
-using Bot.Ws.Models;
+using Bot.BLL.Interfaces;
+using Bot.BLL.Models;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
@@ -89,7 +89,7 @@ namespace Bot.BLL.TelegramLogic
             {
                 var apiUrl = $"https://api.telegram.org/bot{_botToken}/sendMessage?chat_id={chatId}&text={text}";
                 var response = _httpClient.GetStringAsync(apiUrl).Result;
-                Console.WriteLine("Response: " + response);
+               // Console.WriteLine("Response: " + response);
             }
             catch (Exception ex)
             {
@@ -98,10 +98,7 @@ namespace Bot.BLL.TelegramLogic
             }
         }
 
-        public ConcurrentQueue<ResultJson> GetMessages()
-        {
-            return default; //InputMessagesQueue;
-        }
+        
 
         public delegate void InputMessagesDelegate(object sender, InputMessagesEventArgs args);
 

@@ -1,16 +1,20 @@
 using Bot.BLL;
 using Bot.BLL.GameLogic;
+using Bot.BLL.Interfaces;
 using Bot.BLL.TelegramLogic;
 using Bot.WebApp;
-using Bot.Ws;
+using Bot.WebApp.Controllers;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+// builder.Services.AddScoped<BotController>();
 
 builder.Services.Configure<BotSettings>(builder.Configuration.GetSection("BotSettings"));
 builder.Services.AddSingleton<TgUpdateLoop>(); 
 builder.Services.AddSingleton<IBotService, BotService>();
+builder.Services.AddSingleton<ITeamManager, TeamManager>();
 // builder.Services.AddSingleton<IEngine, Engine>();
 builder.Services.AddHostedService<TgUpdateLoop>();
 builder.Services.AddHostedService<Engine>();

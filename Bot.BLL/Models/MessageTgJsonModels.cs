@@ -1,12 +1,12 @@
 using Newtonsoft.Json;
 
-namespace Bot.Ws.Models;
+namespace Bot.BLL.Models;
 
 // MessagesJson myDeserializedClass = JsonConvert.DeserializeObject<MessagesJson>(myJsonResponse);
 public class ChatJson
 {
     [JsonProperty("id")]
-    public long Id { get; set; }
+    public int Id { get; set; }
 
     [JsonProperty("first_name")]
     public string? FirstName { get; set; }

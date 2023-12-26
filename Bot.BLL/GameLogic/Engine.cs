@@ -1,13 +1,13 @@
 using System.Collections.Concurrent;
 using System.Text;
+using Bot.BLL.Interfaces;
+using Bot.BLL.Models;
 using Bot.BLL.TelegramLogic;
-using Bot.Ws;
-using Bot.Ws.Models;
 using Microsoft.Extensions.Hosting;
 
 namespace Bot.BLL.GameLogic;
 
-public class Engine : IHostedService //, IDisposable
+public class Engine : IHostedService
 {
     private ConcurrentQueue<ResultJson> InputMessagesQueue { get; } = new();
     private CancellationTokenSource _cancellationTokenSource;

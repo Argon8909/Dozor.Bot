@@ -1,4 +1,6 @@
-namespace Bot.Ws.Models;
+
+
+namespace Bot.BLL.Models;
 
 public class MessageFromTg
 {
